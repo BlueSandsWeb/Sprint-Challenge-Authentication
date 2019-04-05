@@ -29,18 +29,33 @@ Implement an User Authentication System in order to access the jokes from the Jo
 Demonstrate your understanding of this week's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 1. What is the purpose of using _sessions_?
-1. What does bcrypt do to help us store passwords in a secure manner.
-1. What does bcrypt do to slow down attackers?
-1. What are the three parts of the JSON Web Token?
+
+The purpose of using sessions is to bring state to the stateless web.  A session uses cookies to maintain the state, and it is sent back and forth between the client and the server during the session as the client navigates around the website.
+
+2. What does bcrypt do to help us store passwords in a secure manner.
+
+bcrypt hashes passwords, which is hopefully a one way operation.  This means what we store on the database is not someone's actual password, it is the garbage that comes out of that password getting hashed.  These hashes are supposed to be one way trips to being scrambled, and salted with other values to make it more secure.  This means if someone were to hack your website and get these passwords, they could only make changes to your website (theoretically) and not other places that password might have been used.
+
+3. What does bcrypt do to slow down attackers?
+
+bcrypt runs it's hashing operation multiple times (number of times is your choice, choose wisely).  The more time this operation is run the more time it takes.  If someone is trying to brute force their way into someone's account, it hopefully takes enough time that it's not worth it to the attacker or it might even take enough time it could be nearly impossible for them to do it.
+
+4. What are the three parts of the JSON Web Token?
+
+Header: contains the type of token and the signing algorithm being used.
+
+payload: contains public, private and registered claims.  In essence this information is typically information about the user that should be used to determine their access to different parts of the website. Do not put secret information in a JWT, because it is readable by anyone unless you encrypt it.
+
+Signiture: this is used to verify the message wasn't changed and if signed it can verify the send of JWT.
 
 ## Project Set Up
 
 Follow these steps to set up and work on your project:
 
-- [ ] Create a forked copy of this project.
-- [ ] Add PM as collaborator on Github.
-- [ ] Clone your OWN version of Repo (Not Lambda's by mistake!).
-- [ ] Create a new Branch on the clone: git checkout -b `<firstName-lastName>`.
+- [x] Create a forked copy of this project.
+- [x] Add PM as collaborator on Github.
+- [x] Clone your OWN version of Repo (Not Lambda's by mistake!).
+- [x] Create a new Branch on the clone: git checkout -b `<firstName-lastName>`.
 - [ ] Implement the project on this Branch, committing changes regularly.
 - [ ] Push commits: git push origin `<firstName-lastName>`.
 
