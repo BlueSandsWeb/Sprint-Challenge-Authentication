@@ -1,28 +1,39 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Route, NavLink } from 'react-router-dom';
+
+import Register from './components/Register/Register';
+import Login from './components/Login/Login';
+import Jokes from './components/Jokes/Jokes';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <nav>
+          <NavLink to="/">Home</NavLink>&nbsp;|&nbsp;
+          <NavLink to="/register">Register</NavLink>&nbsp;|&nbsp;
+          <NavLink to="/login">login</NavLink>&nbsp;|&nbsp;
+          <NavLink to="/jokes">jokes</NavLink>
+        </nav>
+        <main>
+          <h1>Dad Jokes</h1>
+          <Route exact path="/" component={Home} />
+          <Route path="/register" component={Register} />
+          <Route path="/login" component={Login} />
+          <Route path="/jokes" component={Jokes} />
+        </main>
       </div>
     );
   }
+}
+
+function Home() {
+  return (
+    <>
+      <p>we promise they're real groaners</p>
+    </>
+  )
 }
 
 export default App;
